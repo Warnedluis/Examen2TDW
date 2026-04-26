@@ -26,9 +26,11 @@ public class SpringConfig {
     {
         http
 
-            .csrf(csrf -> csrf.disable())
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/sendEmail/RecuperarContrasenia")
+            )
             .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/css/**", "/js/**", "/dist/**", "/plugins/**", "/webjars/**").permitAll()
+                        .requestMatchers("/auth/**", "/css/**", "/js/**", "/dist/**", "/plugins/**", "/webjars/**", "/sendEmail/RecuperarContrasenia").permitAll()
                         .anyRequest().authenticated()
             )
             .formLogin(login -> login

@@ -45,14 +45,13 @@
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
           </div>
+
         </div>
+
+        <p class="mb-1">
+          <button type = "button" onclick = "enviarCorreo()" class="btn btn-link p-0 m-0"  style="vertical-align: baseline;">Olvidé mi contraseña</button>
+        </p>
       </form>
-
-
-
-      <p class="mb-1">
-        <a href="forgot-password.html">Olvidé mi contraseña</a>
-      </p>
       <p class="mb-0">
         <a th:href="@{/auth/MostrarRegistrarUsuario}" class="text-center">Registrar a un nuevo usuario</a>
       </p>
@@ -61,7 +60,24 @@
   </div>
 </div>
 <!-- /.login-box -->
+<form id = "formRecuperar" th:action="@{/sendEmail/RecuperarContrasenia}" method = "post" style = "display:none;">
+  <input type = "hidden" name = "username" id="correoOculto">
+</form>
 
+<script>
+  function enviarCorreo() {
+    const CorreoOriginal = document.getElementsByName('username')[0].value;
+
+  if(!CorreoOriginal)
+  {
+    alert("Introduce el correo primero");
+    return;
+  }
+
+  document.getElementById('correoOculto').value = CorreoOriginal;
+  document.getElementById('formRecuperar').submit();
+  }
+</script>
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
