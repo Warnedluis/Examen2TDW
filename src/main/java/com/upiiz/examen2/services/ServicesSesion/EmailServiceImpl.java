@@ -1,4 +1,4 @@
-package com.upiiz.examen2.services;
+package com.upiiz.examen2.services.ServicesSesion;
 
 
 import org.springframework.mail.javamail.JavaMailSender;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import com.upiiz.examen2.entities.EmailEntity;
+import com.upiiz.examen2.entities.EntitiesSesion.EmailEntity;
 
 import jakarta.mail.internet.MimeMessage;
 

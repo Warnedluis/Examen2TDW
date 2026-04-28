@@ -1,12 +1,14 @@
-package com.upiiz.examen2.controllers;
+package com.upiiz.examen2.controllers.ControllersSesion;
 
-import com.upiiz.examen2.entities.UsuarioEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.upiiz.examen2.services.UsuarioServiceImpl;
+
+import com.upiiz.examen2.entities.EntitiesSesion.UsuarioEntity;
+import com.upiiz.examen2.services.ServicesSesion.UsuarioServiceImpl;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 

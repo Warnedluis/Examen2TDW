@@ -1,4 +1,4 @@
-package com.upiiz.examen2.entities;
+package com.upiiz.examen2.entities.EntitiesSesion;
 
 
 public class EmailEntity {

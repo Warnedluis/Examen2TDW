@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Papelería | Añadir a venta</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+</head>
+
+
+<body class="hold-transition login-page">
+<div class="login-box" style="width: 450px;">
+  <div class="login-logo">
+    <a th:href="@{/Ventas/MostrarTablaVentas}"><b>Papelería</b> Ventas</a>
+  </div>
+  
+  
+  <div class="card card-outline card-primary">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Añade productos a la venta actual</p>
+
+      <form th:action="@{/Ventas/AgregarProductoAVenta}" method="post">
+
+        <div class="input-group mb-3" style = "display:none">
+          <input type="hidden" class="form-control" name="idVenta" th:value="${venta.idVenta}" placeholder="id de la venta">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-hashtag"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3" style = "display:none">
+          <input type="hidden" class="form-control" th:value="${venta.nombreCliente}" placeholder="nombre del cliente" readonly>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
+          <div class="input-group mb-3">
+            <select class="form-control" name="idProducto" required>
+              <option value="" disabled selected>Selecciona un producto</option>
+              <option th:each="producto : ${catalogo}" th:value="${producto.idProducto}" th:text="${producto.nombreProducto}"></option>
+            </select>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-box"></span>
+              </div>
+            </div>
+          </div> 
+
+        <div class="row mb-3">
+          <div class="col-12">
+            <button type="submit" class="btn btn-success btn-block">Añadir producto</button>
+          </div>
+        </div>
+      </form>
+
+      <h5 class="text-right text-success">Total: $<span th:text="${total}"></span></h5>
+
+      <h6 class="text-center font-weight-bold mt-4">Productos en esta venta</h6>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Costo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="prod : ${venta.productos}">
+            <td th:text="${prod.nombreProducto}"></td>
+            <td th:text="${prod.costoUnitarioProducto}"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="mt-4 mb-1 text-center">
+        <a th:href="@{/Ventas/MostrarVentas}" class="btn btn-primary btn-block">Finalizar Venta</a>
+      </p>
+    </div>
+  </div>
+</div>
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/dist/js/adminlte.min.js"></script>
+</body>
+</html>

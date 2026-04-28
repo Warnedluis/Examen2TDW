@@ -1,4 +1,4 @@
-package com.upiiz.examen2.entities;
+package com.upiiz.examen2.entities.EntitiesSesion;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

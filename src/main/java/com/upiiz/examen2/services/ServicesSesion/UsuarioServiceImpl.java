@@ -1,4 +1,4 @@
-package com.upiiz.examen2.services;
+package com.upiiz.examen2.services.ServicesSesion;
 
 import java.util.UUID;
 
@@ -10,10 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.upiiz.examen2.entities.EmailEntity;
-import com.upiiz.examen2.entities.UsuarioEntity;
-
-import com.upiiz.examen2.repositories.UsuarioRepository;
+import com.upiiz.examen2.entities.EntitiesSesion.EmailEntity;
+import com.upiiz.examen2.entities.EntitiesSesion.UsuarioEntity;
+import com.upiiz.examen2.repositories.RepositoriesSesion.UsuarioRepository;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
