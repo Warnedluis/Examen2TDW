@@ -20,23 +20,28 @@ public class EmailConfig {
     @Value("${password.username}")
     private String emailPassword;
 
-    private Properties getMailProperties()
-    {
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp" + ".gmail.com");
-        properties.put("mail.smtp.port","587");
-
-        return properties;
-    }
+private Properties getMailProperties() {
+    Properties properties = new Properties();
+    properties.put("mail.smtp.auth", "true");
+    
+    // Configuración crítica para puerto 465 (SSL)
+    properties.put("mail.smtp.ssl.enable", "true"); 
+    properties.put("mail.smtp.socketFactory.port", "465");
+    properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    properties.put("mail.smtp.socketFactory.fallback", "false");
+    
+    // IMPORTANTE: Desactiva STARTTLS si usas SSL puro (puerto 465)
+    properties.put("mail.smtp.starttls.enable", "false"); 
+    
+    return properties;
+}
 
     @Bean 
     public JavaMailSenderImpl javaMailSenderImpl()
     {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
+        mailSender.setPort(465);
         mailSender.setJavaMailProperties(getMailProperties());
         mailSender.setUsername(emailUsername);
         mailSender.setPassword(emailPassword);
