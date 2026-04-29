@@ -43,7 +43,7 @@ public class VentasController {
     {
         VentasEntity venta = new VentasEntity();
         model.addAttribute("venta",venta);
-        return "/Basics/CrearVentaNombre";
+        return "Basics/CrearVentaNombre";
     }
 
     @PostMapping("/CrearVentaNombre")
@@ -53,7 +53,7 @@ public class VentasController {
         return "redirect:/Ventas/MostrarFormularioCrearVenta/" + ventaGuardada.getIdVenta();
     }
 
-    @GetMapping("/MostrarFormularioCrearVenta/{idVenta}")
+    @GetMapping("/MostrarFormularioCrearVenta")
     public String crearVenta(@PathVariable Long idVenta, Model model)
     {
         VentasEntity venta = ventasServiceImpl.getVentaPorId(idVenta);
@@ -113,7 +113,7 @@ public class VentasController {
     {
         VentasEntity venta = ventasServiceImpl.getVentaPorId(idVenta);
         model.addAttribute("venta", venta);
-        return "/Basics/ActualizarProducto";
+        return "Basics/ActualizarProducto";
     }
     
     @PostMapping("/ActualizarProducto")

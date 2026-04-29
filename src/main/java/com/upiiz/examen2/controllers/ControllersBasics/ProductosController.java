@@ -31,7 +31,7 @@ public class ProductosController
     {
         ProductoEntity producto = new ProductoEntity();
         model.addAttribute("producto", producto);
-        return "/Basics/CrearProducto";
+        return "Basics/CrearProducto";
     }
 
     @PostMapping("/CrearProducto")
@@ -47,7 +47,7 @@ public class ProductosController
     {
         List<ProductoEntity> productos = productoServiceImpl.listarProductos();
         model.addAttribute("productos", productos);
-        return "/Basics/TablasProductos";
+        return "Basics/TablasProductos";
     }
 
     //U Update
@@ -57,7 +57,7 @@ public class ProductosController
     {
         ProductoEntity producto = productoServiceImpl.getProductoPorId(idProducto);
         model.addAttribute("producto", producto);
-        return "/Basics/ActualizarProducto";
+        return "Basics/ActualizarProducto";
     }
 
     @PostMapping("/ActualizarProducto")
