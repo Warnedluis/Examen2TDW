@@ -53,7 +53,7 @@ public class VentasController {
         return "redirect:/Ventas/MostrarFormularioCrearVenta/" + ventaGuardada.getIdVenta();
     }
 
-    @GetMapping("/MostrarFormularioCrearVenta")
+    @GetMapping("/MostrarFormularioCrearVenta/{idVenta}")
     public String crearVenta(@PathVariable Long idVenta, Model model)
     {
         VentasEntity venta = ventasServiceImpl.getVentaPorId(idVenta);
@@ -113,11 +113,14 @@ public class VentasController {
     {
         VentasEntity venta = ventasServiceImpl.getVentaPorId(idVenta);
         model.addAttribute("venta", venta);
-        return "Basics/ActualizarProducto";
+        List<ProductoEntity> productosPapeleria = productoServiceImpl.listarProductos();
+        model.addAttribute("catalogo", productosPapeleria);
+
+        return "Basics/ActualizarVenta";
     }
     
-    @PostMapping("/ActualizarProducto")
-    public String actualizarProducto(@ModelAttribute VentasEntity venta)
+    @PostMapping("/ActualizarVenta")
+    public String actualizarVenta(@ModelAttribute VentasEntity venta)
     {
         ventasServiceImpl.actualizarVenta(venta);
         return "redirect:/MostrarTablaVentas";
